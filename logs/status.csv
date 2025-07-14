@@ -1,0 +1,5 @@
+algorithm,seed,pm_prob,sbx_prob,sbx_eta,status
+NSGA2,1097,0.4,0.85,20.0,running
+NSGA2,1097,0.4,0.85,20.0,completed
+NSGA2,1097,0.4,0.85,20.0,running
+NSGA2,1097,0.4,0.85,20.0,completed
