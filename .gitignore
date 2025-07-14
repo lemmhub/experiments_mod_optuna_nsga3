@@ -1,0 +1,11 @@
+# Ignore bash history
+.bash_history
+
+# Ignore Git credentials file
+.git-credentials
+
+# Ignore all pickle files
+*.pkl
+**/*.pkl
+
+et
