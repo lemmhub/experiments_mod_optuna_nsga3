@@ -1,5 +1,6 @@
 #!/bin/bash
 
+#HELLO FROM MArkov
 # === CONFIGURATION ===
 #MODEL_PATH="/home/lmorenom/BRICENO_MODULARIZED/MODULARIZED_OPTUNA/test2/xgboost/best_model.pkl"
 MODEL_PATH="best_model.pkl"
