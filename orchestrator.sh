@@ -3,10 +3,18 @@
 #HELLO FROM MArkov
 # === CONFIGURATION ===
 #MODEL_PATH="/home/lmorenom/BRICENO_MODULARIZED/MODULARIZED_OPTUNA/test2/xgboost/best_model.pkl"
+
+export PATH="$HOME/.local/bin:$PATH"
+export HOME="/home/$(whoami)"
+
+
 MODEL_PATH="best_model.pkl"
 
 PYTHON_SCRIPT="optimization.py"
-PYTHON_ENV="~/.optuna_workflow/bin/activate"
+#PYTHON_ENV="~/.optuna_workflow/bin/activate"
+PYTHON_ENV="$HOME/.optuna_workflow/bin/activate"
+
+
 RESULTS_DIR="."
 MAX_CONCURRENT_SESSIONS=105
 REQUIRED_RUNS=21

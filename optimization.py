@@ -1,3 +1,7 @@
+#run line
+#source ~/.optuna_workflow/bin/activate && python3 optimization.py best_model.pkl --algo NSGA2 --pm_prob=0.4 --sbx_prob=0.7 --sbx_eta=20 --seed=1234
+
+
 import pickle
 import numpy as np
 from datetime import datetime
@@ -47,7 +51,6 @@ algorithm_name = args.algo
 seed = args.seed
 
 model_name = os.path.splitext(os.path.basename(model_path))[0]
-model_name="XGB"
 now = datetime.now().strftime("%Y%m%d_%H%M%S")
 
 # ---------------------------
@@ -171,6 +174,21 @@ def get_algorithm(name):
     else:
         raise ValueError(f"Unsupported algorithm: {name}")
 
+
+from pymoo.core.callback import Callback
+
+class ProgressBarCallback(Callback):
+    def __init__(self, total_gens):
+        super().__init__()
+        self.pbar = tqdm(total=total_gens, desc=f"{algorithm_name}-seed{seed}", position=0, leave=True)
+
+    def notify(self, algorithm):
+        self.pbar.update(1)
+        if self.pbar.n >= self.pbar.total:
+            self.pbar.close()
+
+
+
 # ---------------------------
 # Run
 # ---------------------------
@@ -183,13 +201,14 @@ def run():
     algo = get_algorithm(algorithm_name)
 
     # tqdm visual progress (for local debug or attached tmux)
-    for _ in tqdm(range(1), desc=f"{algorithm_name}-seed{seed}"):
-        res = minimize(problem,
-                       algo,
-                       termination=get_termination("n_gen", 500),
-                       seed=seed,
-                       save_history=True,
-                       verbose=False)
+    callback = ProgressBarCallback(total_gens=500)
+    res = minimize(problem,
+               algo,
+               termination=get_termination("n_gen", 500),
+               seed=seed,
+               save_history=True,
+               verbose=False,
+               callback=callback)
 
     # Save result
     filename = f"{model_name}_M{pm_prob}_C{sbx_prob}-{sbx_eta}_{algorithm_name}_seed{seed}_{now}.pkl"

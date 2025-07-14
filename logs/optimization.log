@@ -1,4 +1,0 @@
-[2025-07-14T16:36:58.856599] START: NSGA2 | seed=1097 | pm_prob=0.4 | sbx_prob=0.85 | sbx_eta=20.0
-[2025-07-14T16:38:35.022258] END: NSGA2 seed=1097 saved as best_model_M0.4_C0.85-20.0_NSGA2_seed1097_20250714_163658.pkl
-[2025-07-14T16:39:21.325090] START: NSGA2 | seed=1097 | pm_prob=0.4 | sbx_prob=0.85 | sbx_eta=20.0
-[2025-07-14T16:40:58.341512] END: NSGA2 seed=1097 saved as best_model_M0.4_C0.85-20.0_NSGA2_seed1097_20250714_163921.pkl
